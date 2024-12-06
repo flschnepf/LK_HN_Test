@@ -53,25 +53,7 @@
 		<!-- iterationNumber % writeEventsInterval == 0 defines in which iterations trips CSV are written to a file. `0' disables trips writing completely. -->
 		<param name="writeTripsInterval" value="50" />
 	</module>
-	<module name="counts" >
-		<!-- Transport modes that will be respected for the counts comparison. 'car' is default, which includes also bussed from the pt simulation module. Use this parameter in combination with 'filterModes' = true! -->
-		<param name="analyzedModes" value="car" />
-		<!-- Specifies over how many iterations the link volumes should be averaged that are used for the counts comparison. Use 1 or 0 to only use the link volumes of a single iteration. This values cannot be larger than the value specified for writeCountsInterval -->
-		<param name="averageCountsOverIterations" value="5" />
-		<!-- factor by which to re-scale the simulated values.  necessary when simulation runs with something different from 100%.  needs to be adapted manually -->
-		<param name="countsScaleFactor" value="1.0" />
-		<!-- distance to distanceFilterCenterNode to include counting stations. The unit of distance is the Euclidean distance implied by the coordinate system -->
-		<param name="distanceFilter" value="null" />
-		<!-- node id for center node of distance filter -->
-		<param name="distanceFilterCenterNode" value="null" />
-		<!-- If true, link counts from legs performed on modes not included in the 'analyzedModes' parameter are ignored. -->
-		<param name="filterModes" value="false" />
-		<!-- The Coordinates Reference System in which the coordinates are expressed in the input file. At import, the coordinates will be converted to the coordinate system defined in "global", and willbe converted back at export. If not specified, no conversion happens. -->
-		<!-- possible values: `html', `txt', `all' -->
-		<param name="outputformat" value="txt" />
-		<!-- Specifies how often the counts comparison should be calculated and written. -->
-		<param name="writeCountsInterval" value="10" />
-	</module>
+
 	<module name="eventsManager" >
 		<!-- Estimated number of events during mobsim run. An optional optimization hint for the framework. -->
 		<param name="estimatedNumberOfEvents" value="null" />
@@ -84,54 +66,20 @@
 		<!-- If enabled, it is ensured that all events that are created during a time step of the mobility simulation are processed before the next time step is simulated. E.g. neccessary when within-day replanning is used. -->
 		<param name="synchronizeOnSimSteps" value="true" />
 	</module>
+
 	<module name="facilities" >
-		<!-- This defines how facilities should be created. Possible values: none fromFile setInScenario onePerActivityLinkInPlansFile onePerActivityLinkInPlansFileExceptWhenCoordinatesAreGiven onePerActivityLocationInPlansFile  -->
-		<param name="facilitiesSource" value="none" />
-		<!-- A prefix to be used for auto-generated IDs. -->
-		<param name="idPrefix" value="f_auto_" />
-		<!-- The Coordinates Reference System in which the coordinates are expressed in the input file. At import, the coordinates will be converted to the coordinate system defined in "global", and willbe converted back at export. If not specified, no conversion happens. -->
-		<param name="inputCRS" value="null" />
 		<param name="inputFacilitiesFile" value="./facilities.xml" />
-		<param name="inputFacilityAttributesFile" value="null" />
-		<param name="insistingOnUsingDeprecatedFacilitiesAttributeFile" value="false" />
 	</module>
+
 	<module name="global" >
 		<param name="coordinateSystem" value="WGS84" />
-		<param name="defaultDelimiter" value=";" />
-		<param name="insistingOnDeprecatedConfigVersion" value="true" />
-		<!-- "global" number of threads.  This number is used, e.g., for replanning, but NOT in QSim.  This can typically be set to as many cores as you have available, or possibly even slightly more. -->
-		<param name="numberOfThreads" value="2" />
 		<param name="randomSeed" value="4711" />
 	</module>
-	<module name="hermes" >
-		<!-- Simulation End Time -->
-		<param name="endTime" value="30:00:00" />
-		<param name="flowCapacityFactor" value="1.0" />
-		<param name="mainMode" value="car" />
-		<param name="storageCapacityFactor" value="1.0" />
-		<!-- time in seconds.  Time after which the frontmost vehicle on a link is called `stuck' if it does not move. Set to Integer.MAX_VALUE to disable this behavior -->
-		<param name="stuckTime" value="10" />
-		<!-- treats PT as deterministic. PT vehicles will run with a steady speed. Should be used with separate network layers for PT and other network modes. -->
-		<param name="useDeterministicPt" value="false" />
-	</module>
+
 	<module name="households" >
 		<param name="insistingOnUsingDeprecatedHouseholdsAttributeFile" value="false" />
 	</module>
-	<module name="jdeqsim" >
-		<param name="carSize" value="7.5" />
-		<param name="endTime" value="undefined" />
-		<param name="flowCapacityFactor" value="1.0" />
-		<param name="gapTravelSpeed" value="15.0" />
-		<param name="minimumInFlowCapacity" value="1800.0" />
-		<param name="squeezeTime" value="1800.0" />
-		<param name="storageCapacityFactor" value="1.0" />
-	</module>
-	<module name="linkStats" >
-		<!-- Specifies over how many iterations the link volumes should be averaged that are used for the link statistics. Use 1 or 0 to only use the link volumes of a single iteration. This values cannot be larger than the value specified for writeLinkStatsInterval -->
-		<param name="averageLinkStatsOverIterations" value="5" />
-		<!-- Specifies how often the link stats should be calculated and written. Use 0 to disable the generation of link stats. -->
-		<param name="writeLinkStatsInterval" value="50" />
-	</module>
+
 	<module name="network" >
 		<!-- The Coordinates Reference System in which the coordinates are expressed in the input file. At import, the coordinates will be converted to the coordinate system defined in "global", and willbe converted back at export. If not specified, no conversion happens. -->
 		<param name="inputCRS" value="null" />
@@ -151,7 +99,7 @@
 		<!-- The Coordinates Reference System in which the coordinates are expressed in the input file. At import, the coordinates will be converted to the coordinate system defined in "global", and willbe converted back at export. If not specified, no conversion happens. -->
 		<param name="inputCRS" value="null" />
 		<param name="inputPersonAttributesFile" value="null" />
-		<param name="inputPlansFile" value="./population.xml" />
+		<param name="inputPlansFile" value="./pop.xml" />
 		<param name="insistingOnUsingDeprecatedPersonAttributeFile" value="false" />
 		<!-- Defines how routes are stored in memory. Currently supported: LinkNetworkRoute, MediumCompressedNetworkRoute, HeavyCompressedNetworkRoute. -->
 		<param name="networkRouteType" value="LinkNetworkRoute" />
@@ -303,7 +251,7 @@
 			<param name="utilityOfLineSwitch" value="-1.0" />
 			<param name="waiting" value="-0.0" />
 			<param name="waitingPt" value="-6.0" />
-			
+
 			<parameterset type="activityParams">
 				<param name="activityType"    value="home" /> <!-- home -->
 				<param name="priority"        value="1" />
@@ -319,8 +267,8 @@
 				<param name="earliestEndTime" value="17:00:00" />
 				<param name="latestStartTime" value="09:00:00" />
 				<param name="closingTime"     value="18:00:00" />
-		</parameterset>
-			
+			</parameterset>
+
 			<parameterset type="activityParams" >
 				<param name="activityType" value="dummy" />
 				<param name="closingTime" value="undefined" />
@@ -481,96 +429,4 @@
 			</parameterset>
 		</parameterset>
 	</module>
-	<module name="subtourModeChoice" >
-		<!-- Only for backwards compatibility.  Defines if only trips from modes list should change mode, or all trips.  Options: fromAllModesToSpecifiedModes fromSpecifiedModesToSpecifiedModes betweenAllAndFewerConstraints  -->
-		<param name="behavior" value="fromSpecifiedModesToSpecifiedModes" />
-		<!-- Defines the chain-based modes, seperated by commas -->
-		<param name="chainBasedModes" value="car,bike" />
-		<!-- Defines whether car availability must be considered or not. A agent has no car only if it has no license, or never access to a car -->
-		<param name="considerCarAvailability" value="false" />
-		<!-- If greater than 0, subtours will also consider coordinates to be at the same location when smaller than set distance. -->
-		<param name="coordDistance" value="0.0" />
-		<!-- Defines all the modes available, including chain-based modes, seperated by commas -->
-		<param name="modes" value="car,pt,bike,walk" />
-		<!-- Defines the probability of changing a single trip for a unchained mode instead of subtour. -->
-		<param name="probaForRandomSingleTripMode" value="0.0" />
-	</module>
-	<module name="timeAllocationMutator" >
-		<!-- Latest Activity End Time. Default = 24:00:00 -->
-		<param name="latestActivityEndTime" value="86400.0" />
-		<!-- Mutates times only around the initially defined end times. -->
-		<param name="mutateAroundInitialEndTimeOnly" value="false" />
-		<!-- Default:true; Defines whether time mutation changes an activity's duration. -->
-		<param name="mutationAffectsDuration" value="true" />
-		<!-- Default:1800.0; Defines how many seconds a time mutation can maximally shift a time. -->
-		<param name="mutationRange" value="1800.0" />
-		<!-- Mutation Range Step, default = 1 second -->
-		<param name="mutationRangeStep" value="1.0" />
-	</module>
-	<module name="transit" >
-		<!-- The Coordinates Reference System in which the coordinates are expressed in the input file. At import, the coordinates will be converted to the coordinate system defined in "global", and willbe converted back at export. If not specified, no conversion happens. -->
-		<param name="inputScheduleCRS" value="null" />
-		<param name="insistingOnUsingDeprecatedAttributeFiles" value="false" />
-		<!-- The type of transit routing algorithm used, may have the values: [DijkstraBased, SwissRailRaptor] -->
-		<param name="routingAlgorithmType" value="SwissRailRaptor" />
-		<!-- Optional input file containing additional attributes for transit lines, stored as ObjectAttributes. -->
-		<param name="transitLinesAttributesFile" value="null" />
-		<!-- Comma-separated list of transportation modes that are handled as transit. Defaults to 'pt'. -->
-		<param name="transitModes" value="pt" />
-		<!-- Input file containing the transit schedule to be simulated. -->
-		<param name="transitScheduleFile" value="null" />
-		<!-- Optional input file containing additional attributes for transit stop facilities, stored as ObjectAttributes. -->
-		<param name="transitStopsAttributesFile" value="null" />
-		<!-- Set this parameter to true if transit should be simulated, false if not. -->
-		<param name="useTransit" value="false" />
-		<param name="usingTransitInMobsim" value="true" />
-		<!-- Input file containing the vehicles used by the departures in the transit schedule. -->
-		<param name="vehiclesFile" value="null" />
-	</module>
-	<module name="transitRouter" >
-		<!-- additional time the router allocates when a line switch happens. Can be interpreted as a 'safety' time that agents need to safely transfer from one line to another -->
-		<param name="additionalTransferTime" value="0.0" />
-		<!-- Factor with which direct walk generalized cost is multiplied before it is compared to the pt generalized cost.  Set to a very high value to reduce direct walk results. -->
-		<param name="directWalkFactor" value="1.0" />
-		<!-- step size to increase searchRadius if no stops are found -->
-		<param name="extensionRadius" value="200.0" />
-		<!-- maximum beeline distance between stops that agents could transfer to by walking -->
-		<param name="maxBeelineWalkConnectionDistance" value="100.0" />
-		<!-- the radius in which stop locations are searched, given a start or target coordinate -->
-		<param name="searchRadius" value="1000.0" />
-	</module>
-	<module name="travelTimeCalculator" >
-		<!-- (only for backwards compatibility; only used if separateModes==false && + filterModes==true)  Transport modes that will be respected by the travel time collector. 'car' is default which includes also buses from the pt simulation module. -->
-		<param name="analyzedModes" value="car" />
-		<param name="calculateLinkToLinkTravelTimes" value="false" />
-		<param name="calculateLinkTravelTimes" value="true" />
-		<!-- (only for backwards compatiblity; only used if separateModes==false)  Only modes included in analyzedModes are included. -->
-		<param name="filterModes" value="false" />
-		<!-- The lenght (in sec) of the time period that is splited into time bins; an additional time bin is created to aggregate all travel times collected after maxTime -->
-		<param name="maxTime" value="108000" />
-		<!-- (only for backwards compatibility) If false, link travel times are measured and aggregated over all vehicles using the link. -->
-		<param name="separateModes" value="true" />
-		<!-- How to deal with congested time bins that have no link entry events. `optimistic' assumes free speed (too optimistic); 'experimental_LastMile' is experimental and probably too pessimistic. -->
-		<param name="travelTimeAggregator" value="optimistic" />
-		<!-- The size of the time bin (in sec) into which the link travel times are aggregated for the router -->
-		<param name="travelTimeBinSize" value="900.0" />
-		<!-- How to deal with link entry times at different positions during the time bin. Currently supported: average, linearinterpolation -->
-		<param name="travelTimeGetter" value="average" />
-	</module>
-	<module name="vehicles" >
-		<param name="vehiclesFile" value="null" />
-	</module>
-	<module name="vspExperimental" >
-		<!-- (do not use except of you have to) There was a problem with pt interaction scoring.  Some people solved it by overwriting the parameters of the pt interaction activity type.  Doing this now throws an Exception.  If you still insist on doing this, set the following to true. -->
-		<param name="isAbleToOverwritePtInteractionParams" value="false" />
-		<param name="isGeneratingBoardingDeniedEvent" value="false" />
-		<!-- if an approximation of the opportunity cost of time is included into the radius calculation for location choice.`true' will be faster, but it is an approximation.  Default is `true'; `false' is available for backwards compatibility. -->
-		<param name="isUsingOpportunityCostOfTimeForLocationChoice" value="true" />
-		<param name="logitScaleParamForPlansRemoval" value="1.0" />
-		<!-- Options: | ignore | info | warn | abort | .  When violating VSP defaults, this results in nothing, logfile infos, logfile warnings, or aborts.  Members of VSP should use `abort' or talk to kai. -->
-		<param name="vspDefaultsCheckingLevel" value="ignore" />
-		<!-- if true then writes output_events in output directory.  default is `false'. Will only work when lastIteration is multiple of events writing interval -->
-		<param name="writingOutputEvents" value="true" />
-	</module>
-
 </config>

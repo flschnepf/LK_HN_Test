@@ -4,11 +4,11 @@
 
 <!-- ====================================================================== -->
 
-	<facility id="home" x="88138.5250271277" y="5475812.499974723">
+	<facility id="home" x="9.189524" y="49.1318519">
 		<activity type="home"/>
 	</facility>
 	
-	<facility id="work" x="76256.93506088445" y="5458715.683713514">
+	<facility id="work" x="9.4170422" y="49.317947">
 		<activity type="work"/>
 	</facility>
 	
