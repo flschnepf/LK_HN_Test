@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE facilities SYSTEM "http://www.matsim.org/files/dtd/facilities_v1.dtd">
+<facilities name="facilities">
+
+<!-- ====================================================================== -->
+
+	<facility id="home" x="88138.5250271277" y="5475812.499974723">
+		<activity type="home"/>
+	</facility>
+	
+	<facility id="work" x="76256.93506088445" y="5458715.683713514">
+		<activity type="work"/>
+	</facility>
+	
+</facilities>
